@@ -41,7 +41,8 @@ import asyncio
 fakedb = {}
 @bot.on_message(filters.command("broadcast", "/"))
 async def broadcast_command_handler(client: bot, message: Message):
-    if message.from_user.id != ADMIN_USER_ID:
+    admin_user = users_collection.find_one({"user_id": message.from_user.id, "role": "admin"})
+    if admin_user is None:
         return 
 
     # Check if the message is a reply
@@ -52,7 +53,7 @@ async def broadcast_command_handler(client: bot, message: Message):
     processing_message = await message.reply("Processing...")
     sent_count = 0
 
-    for user_data in db.user.find({'role':'user'}):
+    for user_data in db.users.find({}):
         try:
             user_id = user_data['user_id']
             fake_list = fakedb.get(message.id, [])
