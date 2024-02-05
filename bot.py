@@ -1,5 +1,7 @@
 from os import environ
 from pyrogram import Client, filters
+from pyrogram.errors import FloodWait
+
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatPermissions, ChatJoinRequest
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -31,6 +33,46 @@ bot = Client(
     api_hash=environ["API_HASH"]
 )
 
+
+
+
+import asyncio
+
+fakedb = {}
+@bot.on_message(filters.command("broadcast", "/"))
+async def broadcast_command_handler(client: bot, message: Message):
+    if message.from_user.id != ADMIN_USER_ID:
+        return 
+
+    # Check if the message is a reply
+    if not message.reply_to_message:
+        await message.reply("Please reply to a message to use the /broadcast command.")
+        return
+
+    processing_message = await message.reply("Processing...")
+    sent_count = 0
+
+    for user_data in db.user.find({'role':'user'}):
+        try:
+            user_id = user_data['user_id']
+            fake_list = fakedb.get(message.id, [])
+            try:
+                if user_id not in fake_list:
+                    await message.reply_to_message.copy(chat_id=int(user_id))
+                    fake_list.append(user_id)
+                    sent_count += 1
+                    status_text = f"**Sent to** `{sent_count}` **users**"
+                    await processing_message.edit(status_text)
+            except FloodWait as f:
+                await asyncio.sleep(f.value)
+            except Exception as e:
+                print(f"Error sending broadcast to user {user_id}: {str(e)}")
+                pass       
+        except Exception as e:
+            print(f"Error sending broadcast to user {user_id}: {str(e)}")
+
+    final_status_text = f"**Total broadcast sent: **{sent_count}"
+    await processing_message.edit(final_status_text)
 
 @bot.on_message(filters.private & filters.command(["start"]))
 async def start(client: bot, message: Message):
