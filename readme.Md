@@ -17,7 +17,7 @@ Tailor Auto Approve to your preferences effortlessly. The `stack.env` file, crea
 
 Deploying Auto Approve is as simple as executing a single command:
 
-```git clone https://github.com/The-Hunter-Oraganization/Auto-Approve
+```git clone https://github.com/Pforc/Auto-Approve
 cd Auto-Approve
 nano stack.env
 pip3 install -r requirements.txt
