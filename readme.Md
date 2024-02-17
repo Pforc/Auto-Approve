@@ -5,7 +5,7 @@ Welcome to **Auto Approve**, where the mundane task of managing Telegram join re
 
 ## Unparalleled Customization
 
-Tailor Auto Approve to your preferences effortlessly. The `stack.env` file, created by [soheru](https://github.com/soheru), empowers you to customize essential variables:
+Tailor Auto Approve to your preferences effortlessly. The `stack.env` file, created by [soheru](https://github.com/Pforc), empowers you to customize essential variables:
 
 - **ADMIN_USER_ID:** Your unique user ID, granting you supreme authority over the bot.
 - **MONGODB_URI:** Seamlessly connect to your MongoDB database, ensuring data integrity.
