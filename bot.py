@@ -91,7 +91,7 @@ async def autoapprove(client: bot, message: ChatJoinRequest):
     user = message.from_user
     print(f"{user.first_name} in {chat.title} Joined 🤝")
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
-    await client.send_message(chat_id=user.id, text=f"Greetings, {user.mention}!\n\nWe are delighted to inform you that your request to join {chat.title} has been approved!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bot Support', url="https://t.me/member_adder_tg"), InlineKeyboardButton('Bot Updates', url='https://t.me/HuntersOrgUpdates')], [InlineKeyboardButton('Bot Dev', url='https://t.me/termuxro')]]))
+    await client.send_message(chat_id=user.id, text=f"Greetings, {user.mention}!\n\nWe are delighted to inform you that your request to join {chat.title} has been approved!", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bot Support', url="https://t.me/member_adder_tg"), InlineKeyboardButton('Bot Updates', url='https://t.me/+QMK_aAtdUC9jZDc1')], [InlineKeyboardButton('Bot Dev', url='https://t.me/termuxro')]]))
     users_collection.update_one(
         {"user_id": user.id},
         {"$set": {"user_id": user.id, "role": "user"}},
