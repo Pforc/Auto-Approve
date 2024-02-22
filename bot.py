@@ -158,6 +158,36 @@ async def rmsudo_command(client: bot, message: Message):
                 await message.reply("User not found in the database.")
         else:
             await message.reply("Please reply to a message or provide a user ID.")
+#mod
+
+@bot.on_message(filters.command(["run", "approve", "start"], [".", "/"]) & AuthChat)                     
+async def approve(client: bot, message: Message):
+    Id = message.chat.id
+    await message.delete(True)
+ 
+    try:
+       while True: # create loop is better techniq 🙃
+           try:
+               await client.approve_all_chat_join_requests(Id)         
+           except FloodWait as t:
+               asyncio.sleep(t.value)
+               await client.approve_all_chat_join_requests(Id) 
+           except Exception as e:
+               logging.error(str(e))
+    except FloodWait as s:
+        asyncio.sleep(s.value)
+        while True:
+           try:
+               await client.approve_all_chat_join_requests(Id)         
+           except FloodWait as t:
+               asyncio.sleep(t.value)
+               await client.approve_all_chat_join_requests(Id) 
+           except Exception as e:
+               logging.error(str(e))
+
+    msg = await client.send_message(Id, "**Task Completed** ✓ **Approved Pending All Join Request**")
+    await asyncio.sleep(3)
+    await msg.delete()
 
 
 print("Auto Approved Bot")
