@@ -77,7 +77,7 @@ async def broadcast_command_handler(client: bot, message: Message):
     final_status_text = f"**Total broadcast sent: **{sent_count}"
     await processing_message.edit(final_status_text)
 
-'''@bot.on_message(filters.private & filters.command(["start"]))
+@bot.on_message(filters.private & filters.command(["start"]))
 async def start(client: bot, message: Message):
     approvedbot = await client.get_me()
     button = [
@@ -85,7 +85,7 @@ async def start(client: bot, message: Message):
         [InlineKeyboardButton("More about the Creator 👨‍💻", url="https://t.me/+QMK_aAtdUC9jZDc1")],
         [InlineKeyboardButton('Updates', url='https://t.me/member_adder_tg'), InlineKeyboardButton('Support ', url='https://t.me/termuxro')]
     ]
-    await client.send_message(chat_id=message.chat.id, text=f"**Hello {message.from_user.mention}!\n\nI am the Auto Approver Join Request Bot. \nJust [Add Me To Your Group Channel](http://t.me/{approvedbot.username}?startgroup=botstart) to get started.**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)'''
+    await client.send_message(chat_id=message.chat.id, text=f"**Hello {message.from_user.mention}!\n\nI am the Auto Approver Join Request Bot. \nJust [Add Me To Your Group Channel](http://t.me/{approvedbot.username}?startgroup=botstart) to get started.**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
 
 @bot.on_chat_join_request(filters.group | filters.channel)
 async def autoapprove(client: bot, message: ChatJoinRequest):
@@ -162,7 +162,7 @@ async def rmsudo_command(client: bot, message: Message):
             await message.reply("Please reply to a message or provide a user ID.")
 #mod
 
-@bot.on_message(filters.command(["run", "approve", "start"], [".", "/"]) & AuthChat)                     
+'''@bot.on_message(filters.command(["run", "approve", "start"], [".", "/"]) & AuthChat)                     
 async def approve(client: bot, message: Message):
     Id = message.chat.id
     await message.delete(True)
@@ -189,7 +189,7 @@ async def approve(client: bot, message: Message):
 
     msg = await client.send_message(Id, "**Task Completed** ✓ **Approved Pending All Join Request**")
     await asyncio.sleep(3)
-    await msg.delete()
+    await msg.delete()'''
 
 
 print("Auto Approved Bot")
