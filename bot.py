@@ -1,3 +1,4 @@
+import logging, asyncio
 from os import environ
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
@@ -32,9 +33,7 @@ bot = Client(
     bot_token=environ["BOT_TOKEN"],
     api_id=int(environ["API_ID"]),
     api_hash=environ["API_HASH"]
-    #mod
-    '''session=environ["SESSION"],
-    channels=environ["CHANNELS"]  ''' )
+    )
 
 
 
