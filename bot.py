@@ -162,7 +162,7 @@ async def rmsudo_command(client: bot, message: Message):
             await message.reply("Please reply to a message or provide a user ID.")
 #mod
 
-@bot.on_message(filters.command(filters.private & filters.command(["approve"])))                     
+'''@bot.on_message(filters.command(filters.private & filters.command(["approve"])))                     
 async def approve(client: bot, message: Message):
     Id = message.chat.id
     await message.delete(True)
@@ -189,7 +189,7 @@ async def approve(client: bot, message: Message):
 
     msg = await client.send_message(Id, "**Task Completed** ✓ **Approved Pending All Join Request**")
     await asyncio.sleep(3)
-    await msg.delete()
+    await msg.delete()'''
 
 
 print("Auto Approved Bot")
