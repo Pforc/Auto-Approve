@@ -32,6 +32,10 @@ bot = Client(
     bot_token=environ["BOT_TOKEN"],
     api_id=int(environ["API_ID"]),
     api_hash=environ["API_HASH"]
+    #mod
+    SESSION=environ["SESSION"]
+    CHANNELS=environ["CHANNELS"]             
+
 )
 
 
