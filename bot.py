@@ -10,7 +10,7 @@ load_dotenv("stack.env")
 ADMIN_USER_ID = int(environ['ADMIN_USER_ID'])
 #mod 
 AuthChat = filters.chat(CHANNELS) if CHANNELS else (filters.group | filters.channel)         
-
+CHANNELS = [int(CHANNEL) for CHANNEL in environ.get("CHANNELS", "").split()]   
 
 mongo_client = MongoClient(environ["MONGODB_URI"])
 db = mongo_client['AutoApprove']
