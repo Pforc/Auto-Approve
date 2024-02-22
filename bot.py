@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 load_dotenv("stack.env")
 ADMIN_USER_ID = int(environ['ADMIN_USER_ID'])
+#mod 
+AuthChat = filters.chat(CHANNELS) if CHANNELS else (filters.group | filters.channel)         
 
 
 mongo_client = MongoClient(environ["MONGODB_URI"])
