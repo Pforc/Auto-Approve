@@ -31,12 +31,10 @@ bot = Client(
     "Auto Approved Bot",
     bot_token=environ["BOT_TOKEN"],
     api_id=int(environ["API_ID"]),
-    api_hash=environ["API_HASH"],
+    api_hash=environ["API_HASH"]
     #mod
     '''session=environ["SESSION"],
-    channels=environ["CHANNELS"]  '''           
-
-)
+    channels=environ["CHANNELS"]  ''' )
 
 
 
