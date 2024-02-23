@@ -82,7 +82,7 @@ async def start(client: bot, message: Message):
     approvedbot = await client.get_me()
     button = [
         [InlineKeyboardButton("➕️ Add Me To Your Chat ➕️", url=f"http://t.me/{approvedbot.username}?startgroup=botstart")],
-        [InlineKeyboardButton("➕️ Add Me To Your Channel ➕️", url=f"http://t.me/{approvedbot.username}?channel=botstart")],
+        [InlineKeyboardButton("➕️ Add Me To Your Channel ➕️", url=f"http://t.me/{approvedbot.username}?startchannel=botstart")],
         [InlineKeyboardButton('Updates', url='https://t.me/member_adder_tg')]
     ]
     await client.send_message(chat_id=message.chat.id, text=f"**Hello {message.from_user.mention}!\n\nI am the Auto Approver Join Request Bot. \nJust [Add Me To Your Group Channel](http://t.me/{approvedbot.username}?startgroup=botstart) to get started.**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
