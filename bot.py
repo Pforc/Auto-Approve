@@ -17,7 +17,7 @@ mongo_client = MongoClient(environ["MONGODB_URI"])
 db = mongo_client['AutoApprove']
 users_collection = db.users
 
-bots     = Client(name = "AcceptUser", session_string = environ.get("SESSION"))
+user = Client(name = "AcceptUser", session_string = environ.get("SESSION"))
 
 #check 
 check = users_collection.find_one({"user_id": ADMIN_USER_ID})
