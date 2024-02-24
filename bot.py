@@ -165,7 +165,7 @@ async def rmsudo_command(client: bot, message: Message):
 #mod
 
 @user.on_message(filters.command(["approve"]))                  
-async def approve(client: users, message: Message):
+async def approve(client: user, message: Message):
     Id = message.chat.id
     await message.delete(True)
  
