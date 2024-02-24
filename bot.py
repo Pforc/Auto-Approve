@@ -1,6 +1,7 @@
 import logging, asyncio
 from os import environ
 from pyrogram import Client, filters
+from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatPermissions, ChatJoinRequest
@@ -16,6 +17,7 @@ mongo_client = MongoClient(environ["MONGODB_URI"])
 db = mongo_client['AutoApprove']
 users_collection = db.users
 
+bots     = Client(name = "AcceptUser", session_string = environ.get("SESSION"))
 
 #check 
 check = users_collection.find_one({"user_id": ADMIN_USER_ID})
@@ -162,8 +164,8 @@ async def rmsudo_command(client: bot, message: Message):
             await message.reply("Please reply to a message or provide a user ID.")
 #mod
 
-@bot.on_message(filters.command(["approve"]))                  
-async def approve(client: bot, message: Message):
+@bots.on_message(filters.command(["approve"])& AuthChat)                  
+async def approve(client: bots, message: Message):
     Id = message.chat.id
     await message.delete(True)
  
