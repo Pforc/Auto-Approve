@@ -30,12 +30,12 @@ if check is None or check.get('role') != 'admin':
     print('Added Admin In Sudo List')
 
 
-bot = Client(
-    "Auto Approved Bot",
-    bot_token=environ["BOT_TOKEN"],
-    api_id=int(environ["API_ID"]),
-    api_hash=environ["API_HASH"]
-    )
+#bot = Client(
+ #   "Auto Approved Bot",
+  #  bot_token=environ["BOT_TOKEN"],
+   # api_id=int(environ["API_ID"]),
+    #api_hash=environ["API_HASH"]
+    #)
 
 
 
@@ -43,8 +43,8 @@ bot = Client(
 import asyncio
 
 fakedb = {}
-@bot.on_message(filters.command("broadcast", "/"))
-async def broadcast_command_handler(client: bot, message: Message):
+@user.on_message(filters.command("broadcast", "/"))
+async def broadcast_command_handler(client: user, message: Message):
     admin_user = users_collection.find_one({"user_id": message.from_user.id, "role": "admin"})
     if admin_user is None:
         return 
@@ -79,8 +79,8 @@ async def broadcast_command_handler(client: bot, message: Message):
     final_status_text = f"**Total broadcast sent: **{sent_count}"
     await processing_message.edit(final_status_text)
 
-@bot.on_message(filters.private & filters.command(["start"]))
-async def start(client: bot, message: Message):
+@user.on_message(filters.private & filters.command(["start"]))
+async def start(client: user, message: Message):
     approvedbot = await client.get_me()
     button = [
         [InlineKeyboardButton("➕️ Add Me To Your Chat ➕️", url=f"http://t.me/{approvedbot.username}?startgroup=botstart")],
@@ -89,8 +89,8 @@ async def start(client: bot, message: Message):
     ]
     await client.send_message(chat_id=message.chat.id, text=f"**Hello {message.from_user.mention}!\n\nI am the Auto Approver Join Request Bot. \nJust [Add Me To Your Group Channel](http://t.me/{approvedbot.username}?startgroup=botstart) to get started.**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
 
-@bot.on_chat_join_request(filters.group | filters.channel)
-async def autoapprove(client: bot, message: ChatJoinRequest):
+@user.on_chat_join_request(filters.group | filters.channel)
+async def autoapprove(client: user, message: ChatJoinRequest):
     chat = message.chat
     user = message.from_user
     print(f"{user.first_name} in {chat.title} Joined 🤝")
@@ -103,7 +103,7 @@ async def autoapprove(client: bot, message: ChatJoinRequest):
     )
 
 @bot.on_message(filters.command(["stats"]))
-async def stats_command(client: bot, message: Message):
+async def stats_command(client: user, message: Message):
     admin_user = users_collection.find_one({"user_id": message.from_user.id, "role": "admin"})
     if admin_user:
         total_users = users_collection.count_documents({})
@@ -111,7 +111,7 @@ async def stats_command(client: bot, message: Message):
  
 
 @bot.on_message(filters.command(["addsudo"]))
-async def addsudo_command(client: bot, message: Message):
+async def addsudo_command(client: user, message: Message):
     admin_user = users_collection.find_one({"user_id": message.from_user.id, "role": "admin"})
     if admin_user:
         replied_user_id = None
@@ -137,8 +137,8 @@ async def addsudo_command(client: bot, message: Message):
             await message.reply("Please reply to a message or provide a user ID.")
     
 
-@bot.on_message(filters.command(["rmsudo"]))
-async def rmsudo_command(client: bot, message: Message):
+@user.on_message(filters.command(["rmsudo"]))
+async def rmsudo_command(client: user, message: Message):
     admin_user = users_collection.find_one({"user_id": message.from_user.id, "role": "admin"})
     if admin_user:
         replied_user_id = None
