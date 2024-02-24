@@ -33,9 +33,6 @@ bot = Client(
     api_hash=environ["API_HASH"]
 )
 
-
-
-
 import asyncio
 
 fakedb = {}
