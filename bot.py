@@ -43,8 +43,8 @@ if check is None or check.get('role') != 'admin':
 import asyncio
 
 fakedb = {}
-@user.on_message(filters.command("broadcast", "/"))
-async def broadcast_command_handler(client: user, message: Message):
+@bot.on_message(filters.command("broadcast", "/"))
+async def broadcast_command_handler(client: bot, message: Message):
     admin_user = users_collection.find_one({"user_id": message.from_user.id, "role": "admin"})
     if admin_user is None:
         return 
