@@ -30,12 +30,12 @@ if check is None or check.get('role') != 'admin':
     print('Added Admin In Sudo List')
 
 
-#bot = Client(
- #   "Auto Approved Bot",
-  #  bot_token=environ["BOT_TOKEN"],
-   # api_id=int(environ["API_ID"]),
-    #api_hash=environ["API_HASH"]
-    #)
+bot = Client(
+   "Auto Approved Bot",
+    bot_token=environ["BOT_TOKEN"],
+    api_id=int(environ["API_ID"]),
+    api_hash=environ["API_HASH"]
+    )
 
 
 
