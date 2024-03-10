@@ -79,7 +79,7 @@ async def broadcast_command_handler(client: bot, message: Message):
     final_status_text = f"**Total broadcast sent: **{sent_count}"
     await processing_message.edit(final_status_text)
 
-@user.on_message(filters.private & filters.command(["start"]))
+@bot.on_message(filters.private & filters.command(["start"]))
 async def start(client: user, message: Message):
     approvedbot = await client.get_me()
     button = [
