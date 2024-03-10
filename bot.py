@@ -89,7 +89,7 @@ async def start(client: user, message: Message):
     ]
     await client.send_message(chat_id=message.chat.id, text=f"**Hello {message.from_user.mention}!\n\nI am the Auto Approver Join Request Bot. \nJust [Add Me To Your Group Channel](http://t.me/{approvedbot.username}?startgroup=botstart) to get started.**", reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
 
-@user.on_chat_join_request(filters.group | filters.channel)
+@bot.on_chat_join_request(filters.group | filters.channel)
 async def autoapprove(client: user, message: ChatJoinRequest):
     chat = message.chat
     user = message.from_user
@@ -137,7 +137,7 @@ async def addsudo_command(client: user, message: Message):
             await message.reply("Please reply to a message or provide a user ID.")
     
 
-@user.on_message(filters.command(["rmsudo"]))
+@bot.on_message(filters.command(["rmsudo"]))
 async def rmsudo_command(client: user, message: Message):
     admin_user = users_collection.find_one({"user_id": message.from_user.id, "role": "admin"})
     if admin_user:
@@ -164,7 +164,7 @@ async def rmsudo_command(client: user, message: Message):
             await message.reply("Please reply to a message or provide a user ID.")
 #mod
 
-@user.on_message(filters.command(["approve"]))                  
+@bot.on_message(filters.command(["approve"]))                  
 async def approve(client: user, message: Message):
     Id = message.chat.id
     await message.delete(True)
